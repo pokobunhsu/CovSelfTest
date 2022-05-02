@@ -83,6 +83,7 @@ body {
     background-color: rgb(254, 247, 216);
     border: 5px solid black;
     border-radius: 10px;
+    z-index: 2;
 }
 
 h1 {
@@ -163,4 +164,78 @@ h1 {
 .card .func img {
     border: 3px solid black;
     padding: 10px;
+}
+
+.bgIcon {
+    top: 10px;
+    font-size: 80px;
+    /*Don't select*/
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
+
+.notice {
+    font-weight: 600;
+    font-size: 30px;
+    width: 100%;
+    text-align: center;
+}
+
+.lastUpdate {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+@media screen and (min-width: 807px) and (max-width: 980px) {
+    .box {
+        background-color: aquamarine;
+    }
+
+    .card {
+        padding: 18px 20px;
+        margin: 5px 50px;
+        background-color: #FFC9CA;
+        border-radius: 10px;
+        width: 230px;
+    }
+}
+
+@media screen and (min-width: 100px) and (max-width: 807px) {
+    .box {
+        width: 350px;
+        background-color: rgb(255, 255, 127);
+    }
+
+    .top {
+        flex-direction: column;
+    }
+
+    .bottom {
+        height: calc(100% - 120px);
+    }
+
+    .card {
+        padding: 18px 20px;
+        margin: 5px 50px;
+        background-color: #FFC9CA;
+        border-radius: 10px;
+        width: 230px;
+    }
+
+    .searchBox input {
+        width: 200px;
+    }
+
+    .searchBox button {
+        line-height: 21px;
+        box-sizing: border-box;
+        font-size: 16px;
+        font-weight: 600;
+        border: 3px solid black;
+        padding: 10px 10px;
+        margin: 0px 10px;
+    }
 }
