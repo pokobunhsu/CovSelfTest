@@ -1,3 +1,4 @@
+const version = "Ver.2022/05/02-001"
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const country = urlParams.get('country')
@@ -7,6 +8,8 @@ let notice = document.querySelector('.notice')
 let lastUpdate = document.querySelector('#lastUpdate')
 let index = 0
 inputText.value = country
+
+document.title = document.title + " " + version
 
 
 fetch(`https://pokoapi.herokuapp.com/selfTest/lastUpdate`).then(c => {
