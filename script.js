@@ -1,4 +1,4 @@
-const version = "Ver.2022/05/02-001"
+const version = "Ver.2022/05/02-002"
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const country = urlParams.get('country')
@@ -41,7 +41,7 @@ if (inputText.value != "") {
             });
         } else {
             notice.setAttribute('style', 'display:inline;')
-            notice.innerHTML = "請重新輸入地區，開始查詢!<br><br>😍🥰😎🤣😁😝😜😇"
+            notice.innerHTML = "您搜尋的地區可能都沒有貨了，請重新輸入地區，開始查詢!<br><br>😍🥰😎🤣😁😝😜😇"
         }
     }).catch((err) => {
         notice.setAttribute('style', 'display:inline;')
