@@ -9,12 +9,13 @@ let index = 0
 inputText.value = country
 
 
+fetch(`https://pokoapi.herokuapp.com/selfTest/lastUpdate`).then(c => {
+    return c.text()
+}).then(res => {
+    lastUpdate.textContent = res
+})
+
 if (inputText.value != "") {
-    fetch(`https://pokoapi.herokuapp.com/selfTest/lastUpdate`).then(c => {
-        return c.text()
-    }).then(res => {
-        lastUpdate.textContent = res
-    })
     fetch(`https://pokoapi.herokuapp.com/selfTest/${country}/${index}`).then(c => {
         return c.json()
     }).then(res => {

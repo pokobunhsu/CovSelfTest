@@ -222,11 +222,11 @@ h1 {
         margin: 5px 50px;
         background-color: #FFC9CA;
         border-radius: 10px;
-        width: 230px;
+        width: 200px;
     }
 
     .searchBox input {
-        width: 200px;
+        width: 190px;
     }
 
     .searchBox button {
