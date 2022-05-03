@@ -1,4 +1,4 @@
-const version = "Ver.2022/05/03-001"
+const version = "Ver.2022/05/04-001"
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const country = urlParams.get('country')
@@ -8,6 +8,19 @@ let notice = document.querySelector('.notice')
 let lastUpdate = document.querySelector('#lastUpdate')
 let show = document.querySelector('.show')
 let index = 0
+let dayArr = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
+let whocanbuy = ""
+let day = new Date()
+if (day.getDay() == 0) {
+    whocanbuy = "不限"
+} else {
+    if (day.getDay() % 2 != 0) {
+        whocanbuy = "單數"
+    } else {
+        whocanbuy = "雙數"
+    }
+}
+
 inputText.value = country
 
 document.title = document.title + " " + version
@@ -46,11 +59,11 @@ if (inputText.value != "") {
         }
     }).catch((err) => {
         notice.setAttribute('style', 'display:inline;')
-        notice.innerHTML = "請重新輸入地區，開始查詢!<br><br>😍🥰😎🤣😁😝😜😇"
+        notice.innerHTML = "伺服器壞壞了!請等我恢復再過來OAO<br><br>😑😑😑"
     })
 } else {
     notice.setAttribute('style', 'display:inline;')
-    notice.innerHTML = "請輸入地區開始查詢吧!<br><br>😍🥰😎🤣😁😝😜😇<br><br>ex:林口 or 竹北 or 南投"
+    notice.innerHTML = `請輸入地區開始查詢吧!<br><br>😎🤣😁<br><br>ex:林口 or 竹北 or 南投<br><br> 今天是${dayArr[day.getDay()]}<br>身分證尾數<span style="color:red;">${whocanbuy}</span><br>可以購買喔!`
 }
 
 
