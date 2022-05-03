@@ -1,4 +1,4 @@
-const version = "Ver.2022/05/02-002"
+const version = "Ver.2022/05/03-001"
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const country = urlParams.get('country')
@@ -6,6 +6,7 @@ let list = document.querySelector('.bottom')
 let inputText = document.querySelector('#country')
 let notice = document.querySelector('.notice')
 let lastUpdate = document.querySelector('#lastUpdate')
+let show = document.querySelector('.show')
 let index = 0
 inputText.value = country
 
@@ -66,6 +67,7 @@ let search = () => {
 
 
 let getAfter = () => {
+    show.textContent = "還有地方有賣😎..."
     fetch(`https://pokoapi.herokuapp.com/selfTest/lastUpdate`).then(c => {
         return c.text()
     }).then(res => {
@@ -75,6 +77,7 @@ let getAfter = () => {
         return c.json()
     }).then(res => {
         console.log(res.length);
+
         if (res.length != 0) {
             res.forEach(element => {
                 let data = `
@@ -89,9 +92,11 @@ let getAfter = () => {
                 </div>
             </div>
         `
+                show.textContent = "請繼續往下滑😉..."
                 list.innerHTML += data
             });
         } else {
+            show.textContent = "已經到最底了😫"
             removeHandler()
         }
     })
@@ -107,6 +112,7 @@ let scrollCheck = (e) => {
     ch = e.target.clientHeight
     st = e.target.scrollTop
     console.log("滑動中....", sh, ch, st);
+    show.textContent = "快篩試劑還有嗎?"
     if (st >= (sh - ch) - 1) {
         console.log("已到最底");
         index += 12
