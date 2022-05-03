@@ -124,7 +124,7 @@ h1 {
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
-    height: calc(100% - 72px);
+    height: calc(100% - 85px);
     overflow: scroll;
     overflow-x: hidden;
     overflow-y: scroll;
@@ -184,9 +184,8 @@ h1 {
 }
 
 .lastUpdate {
-    position: absolute;
-    bottom: 5px;
-    right: 5px;
+    margin: 10px 0px;
+    text-align: right;
 }
 
 @media screen and (min-width: 807px) and (max-width: 980px) {
@@ -215,7 +214,7 @@ h1 {
     }
 
     .bottom {
-        height: calc(100% - 120px);
+        height: calc(100% - 130px);
         justify-content: center;
     }
 
