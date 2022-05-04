@@ -1,4 +1,4 @@
-const version = "Ver.2022/05/04-002"
+const version = "Ver.2022/05/04-003"
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const country = urlParams.get('country')
