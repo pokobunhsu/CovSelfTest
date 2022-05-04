@@ -59,7 +59,7 @@ if (inputText.value != "") {
             });
         } else {
             notice.setAttribute('style', 'display:inline;')
-            notice.innerHTML = "您搜尋的地區可能都沒有貨了，請重新輸入地區，開始查詢!<br><br>😍🥰😎🤣😁😝😜😇"
+            notice.innerHTML = "您搜尋的地區可能都沒有貨了<br>請重新輸入地區<br>開始查詢!<br><br>😍🥰😎"
         }
     }).catch((err) => {
         notice.setAttribute('style', 'display:inline;')
@@ -67,7 +67,7 @@ if (inputText.value != "") {
     })
 } else {
     notice.setAttribute('style', 'display:inline;')
-    notice.innerHTML = `請輸入地區開始查詢吧!<br><br>😎🤣😁<br><br>ex:林口 or 竹北 or 南投<br><br> 今天是${dayArr[day.getDay()]}<br>身分證尾數<span style="color:red;">${whocanbuy}</span><br>可以購買喔!`
+    notice.innerHTML = `請輸入地區開始查詢吧!<br><br>😎🤣😁<br><br>ex:林口 or 竹北 or 南投<br><br> <span class="whocanbuy">今天是${dayArr[day.getDay()]}<br>身分證尾數<span style="color:red;">${whocanbuy}</span><br>可以購買喔!</span>`
 }
 
 

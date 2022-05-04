@@ -245,8 +245,13 @@ h5 {
     }
 
     .notice {
-        font-size: 28px;
+        font-size: 20px;
         width: 100%;
         text-align: center;
+    }
+
+    .whocanbuy {
+        font-size: 28px;
+        line-height: 42px;
     }
 }
