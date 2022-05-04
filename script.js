@@ -1,4 +1,4 @@
-const version = "Ver.2022/05/04-001"
+const version = "Ver.2022/05/04-002"
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const country = urlParams.get('country')
@@ -7,6 +7,7 @@ let inputText = document.querySelector('#country')
 let notice = document.querySelector('.notice')
 let lastUpdate = document.querySelector('#lastUpdate')
 let show = document.querySelector('.show')
+let scrollEnable = true
 let index = 0
 let dayArr = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
 let whocanbuy = ""
@@ -33,9 +34,11 @@ fetch(`https://pokoapi.herokuapp.com/selfTest/lastUpdate`).then(c => {
 })
 
 if (inputText.value != "") {
+    scrollEnable = false
     fetch(`https://pokoapi.herokuapp.com/selfTest/${country}/${index}`).then(c => {
         return c.json()
     }).then(res => {
+        scrollEnable = true
         console.log(res);
         if (res.length != 0) {
             res.forEach(element => {
@@ -49,6 +52,7 @@ if (inputText.value != "") {
                     <a href="https://www.google.com/maps/search/?api=1&query=${element.醫事機構地址}" target="blank"><img
                     src="https://img.icons8.com/ios/50/000000/address--v1.png" width="40px" /></a>
                 </div>
+                <h5>${element.醫事機構地址}</h5>
             </div>
         `
                 list.innerHTML += data
@@ -80,7 +84,7 @@ let search = () => {
 
 
 let getAfter = () => {
-    show.textContent = "還有地方有賣😎..."
+    show.textContent = "正在載入更多😎..."
     fetch(`https://pokoapi.herokuapp.com/selfTest/lastUpdate`).then(c => {
         return c.text()
     }).then(res => {
@@ -90,7 +94,7 @@ let getAfter = () => {
         return c.json()
     }).then(res => {
         console.log(res.length);
-
+        scrollEnable = true
         if (res.length != 0) {
             res.forEach(element => {
                 let data = `
@@ -103,6 +107,7 @@ let getAfter = () => {
                     <a href="https://www.google.com/maps/search/?api=1&query=${element.醫事機構地址}" target="blank"><img
                     src="https://img.icons8.com/ios/50/000000/address--v1.png" width="40px" /></a>
                 </div>
+                <h5>${element.醫事機構地址}</h5>
             </div>
         `
                 show.textContent = "請繼續往下滑😉..."
@@ -110,6 +115,9 @@ let getAfter = () => {
             });
         } else {
             show.textContent = "已經到最底了😫"
+            setTimeout(() => {
+                show.textContent = "快篩試劑還有嗎?"
+            }, 5000)
             removeHandler()
         }
     })
@@ -126,9 +134,10 @@ let scrollCheck = (e) => {
     st = e.target.scrollTop
     console.log("滑動中....", sh, ch, st);
     show.textContent = "快篩試劑還有嗎?"
-    if (st >= (sh - ch) - 1) {
+    if (st >= (sh - ch) - 1 && scrollEnable == true) {
         console.log("已到最底");
         index += 12
+        scrollEnable = false
         getAfter()
     }
 }

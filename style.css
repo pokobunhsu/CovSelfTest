@@ -92,6 +92,10 @@ h1 {
     padding: 10px 5px;
 }
 
+h5 {
+    padding-top: 10px;
+}
+
 .searchBox {
     display: flex;
     align-items: center;
@@ -214,16 +218,16 @@ h1 {
     }
 
     .bottom {
+        position: relative;
         height: calc(100% - 130px);
         justify-content: center;
     }
 
     .card {
-        padding: 18px 20px;
-        margin: 5px 10px;
+        padding: 18px 30px;
+        margin: 5px 5px;
         background-color: #FFC9CA;
         border-radius: 10px;
-        width: 200px;
     }
 
     .searchBox input {
