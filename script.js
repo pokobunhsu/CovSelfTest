@@ -141,4 +141,3 @@ inputText.addEventListener('keydown', (e) => {
 
 
 list.addEventListener('scroll', scrollCheck)
-
