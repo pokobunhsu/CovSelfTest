@@ -239,4 +239,10 @@ h1 {
         padding: 10px 10px;
         margin: 0px 5px;
     }
+
+    .notice {
+        font-size: 28px;
+        width: 100%;
+        text-align: center;
+    }
 }
