@@ -194,6 +194,21 @@ h5 {
     text-align: right;
 }
 
+.momDayIcon {
+    top: 0px;
+    right: 0px;
+    position: fixed;
+    z-index: 5;
+    width: 120px;
+    border-radius: 50%;
+    border: 2px solid rgb(248, 171, 212);
+    background-color: #FFC9CA;
+}
+
+.momDayIcon:hover {
+    cursor: pointer;
+}
+
 
 @media screen and (min-width: 807px) and (max-width: 980px) {
     .box {
@@ -206,6 +221,12 @@ h5 {
         background-color: #FFC9CA;
         border-radius: 10px;
         width: 230px;
+    }
+
+    .momDayIcon {
+        width: 80px;
+        border-radius: 50%;
+        border: 2px solid rgb(248, 171, 212);
     }
 }
 
@@ -257,5 +278,15 @@ h5 {
     .whocanbuy {
         font-size: 28px;
         line-height: 42px;
+    }
+
+    .momDayIcon {
+        top: 0px;
+        right: 0px;
+        position: fixed;
+        z-index: 5;
+        width: 60px;
+        border-radius: 50%;
+        border: 6px solid rgb(248, 171, 212);
     }
 }
