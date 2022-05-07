@@ -28,7 +28,7 @@ if (day.getDay() == 0) {
 window.onload = () => {
     if (inputText.value != "") {
         if (inputText.value == "母親節快樂") {
-            show.textContent = "想跟媽媽說甚麼?☺"
+            show.textContent = "想跟媽媽說什麼?☺"
             setInterval(momChat, 1000)
         } else {
             scrollEnable = false
