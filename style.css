@@ -64,7 +64,7 @@ html, body {
 }
 
 body {
-    background-color: rgb(240, 240, 240);
+    background-color: #fffffc;
     display: flex;
     align-items: center;
 }
@@ -76,6 +76,7 @@ body {
 }
 
 .box {
+    position: relative;
     width: 920px;
     height: 500px;
     margin: 0 auto;
@@ -84,6 +85,7 @@ body {
     border: 5px solid black;
     border-radius: 10px;
     z-index: 2;
+    box-shadow: 5px 10px 20px rgb(217, 217, 217);
 }
 
 h1 {
@@ -192,9 +194,10 @@ h5 {
     text-align: right;
 }
 
+
 @media screen and (min-width: 807px) and (max-width: 980px) {
     .box {
-        background-color: aquamarine;
+        background-color: rgb(254, 255, 208);
     }
 
     .card {
@@ -210,7 +213,8 @@ h5 {
     .box {
         width: 300px;
         height: 88%;
-        background-color: rgb(255, 255, 127);
+        background-color: #fae3e4;
+        border: none;
     }
 
     .top {
@@ -226,7 +230,7 @@ h5 {
     .card {
         padding: 18px 30px;
         margin: 5px 5px;
-        background-color: #FFC9CA;
+        background-color: #fff7d6;
         border-radius: 10px;
     }
 
