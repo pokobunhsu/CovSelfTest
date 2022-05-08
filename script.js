@@ -1,4 +1,4 @@
-const version = "Ver.2022/05/08-母親節特別版"
+const version = "Ver.2022/05/09-001"
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const country = urlParams.get('country')
@@ -200,9 +200,9 @@ inputText.addEventListener('keydown', (e) => {
         search()
     }
 })
-momIcon.addEventListener('click', (e) => {
-    location.href = `./index.html?country=母親節快樂`
-})
+// momIcon.addEventListener('click', (e) => {
+//     location.href = `./index.html?country=母親節快樂`
+// })
 
 
 if (inputText.value == "母親節快樂") {
