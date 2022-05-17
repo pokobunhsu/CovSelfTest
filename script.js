@@ -1,4 +1,4 @@
-const version = "Ver.2022/05/17"
+const version = "Ver.2022/05/17-2"
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const country = urlParams.get('country')
@@ -46,7 +46,7 @@ window.onload = () => {
                         <h4>備註：<br>${element.備註}</h4>
                         <div class="func">
                             <a href="tel:${element.醫事機構電話}"><img src="https://img.icons8.com/ios/50/000000/outgoing-call.png" width="40px" /></a>
-                            <a href="https://www.google.com/maps/search/?api=1&query=${element.醫事機構地址}?openExternalBrowser=1" target="blank"><img
+                            <a href="https://www.google.com/maps/search/?api=1&query=${element.醫事機構地址}&openExternalBrowser=1" target="blank"><img
                             src="https://img.icons8.com/ios/50/000000/address--v1.png" width="40px" /></a>
                         </div>
                         <h5>${element.醫事機構地址}</h5>
@@ -118,7 +118,7 @@ let getAfter = () => {
                 <h4>備註：<br>${element.備註}</h4>
                 <div class="func">
                     <a href="tel:${element.醫事機構電話}"><img src="https://img.icons8.com/ios/50/000000/outgoing-call.png" width="40px" /></a>
-                    <a href="https://www.google.com/maps/search/?api=1&query=${element.醫事機構地址}" target="blank"><img
+                    <a href="https://www.google.com/maps/search/?api=1&query=${element.醫事機構地址}&openExternalBrowser=1" target="blank"><img
                     src="https://img.icons8.com/ios/50/000000/address--v1.png" width="40px" /></a>
                 </div>
                 <h5>${element.醫事機構地址}</h5>
