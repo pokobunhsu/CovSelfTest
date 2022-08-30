@@ -1,4 +1,5 @@
-const version = "Ver.2022/05/17-2"
+const version = "Ver.2022/08/30-1"
+const API = "https://covselftest.azurewebsites.net"
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 const country = urlParams.get('country')
@@ -7,7 +8,6 @@ let inputText = document.querySelector('#country')
 let notice = document.querySelector('.notice')
 let lastUpdate = document.querySelector('#lastUpdate')
 let show = document.querySelector('.show')
-let momIcon = document.querySelector('.momDayIcon')
 let sayList = document.querySelector('.sayList')
 let sayListAll = document.querySelector('#sayListAll')
 let scrollEnable = true
@@ -15,7 +15,8 @@ let index = 0
 let dayArr = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"]
 let whocanbuy = ""
 let day = new Date()
-if (day.getDay() == 0) {
+let isLimit = false
+if (day.getDay() == 0 || isLimit == false) {
     whocanbuy = "不限"
 } else {
     if (day.getDay() % 2 != 0) {
@@ -27,19 +28,15 @@ if (day.getDay() == 0) {
 
 window.onload = () => {
     if (inputText.value != "") {
-        if (inputText.value == "母親節快樂") {
-            show.textContent = "想跟媽媽說什麼?☺"
-            setInterval(momChat, 1000)
-        } else {
-            scrollEnable = false
-            fetch(`https://pokoapi.herokuapp.com/selfTest/${country}/${index}`).then(c => {
-                return c.json()
-            }).then(res => {
-                scrollEnable = true
-                console.log(res);
-                if (res.length != 0) {
-                    res.forEach(element => {
-                        let data = `
+        scrollEnable = false
+        fetch(`${API}/selfTest/${country}/${index}`).then(c => {
+            return c.json()
+        }).then(res => {
+            scrollEnable = true
+            console.log(res);
+            if (res.length != 0) {
+                res.forEach(element => {
+                    let data = `
                     <div class="card">
                         <h2>${element.醫事機構名稱}</h2>
                         <h3 class="remain">剩下${element.快篩試劑截至目前結餘存貨數量}份</h3>
@@ -52,18 +49,16 @@ window.onload = () => {
                         <h5>${element.醫事機構地址}</h5>
                     </div>
                 `
-                        list.innerHTML += data
-                    });
-                } else {
-                    notice.setAttribute('style', 'display:inline;')
-                    notice.innerHTML = "您搜尋的地區可能都沒有貨了<br>請重新輸入地區<br>開始查詢!<br><br>😍🥰😎"
-                }
-            }).catch((err) => {
+                    list.innerHTML += data
+                });
+            } else {
                 notice.setAttribute('style', 'display:inline;')
-                notice.innerHTML = "伺服器壞壞了!請等我恢復再過來OAO<br><br>😑😑😑"
-            })
-        }
-
+                notice.innerHTML = "您搜尋的地區可能都沒有貨了<br>請重新輸入地區<br>開始查詢!<br><br>😍🥰😎"
+            }
+        }).catch((err) => {
+            notice.setAttribute('style', 'display:inline;')
+            notice.innerHTML = "伺服器壞壞了!請等我恢復再過來OAO<br><br>😑😑😑"
+        })
     } else {
         notice.setAttribute('style', 'display:inline;')
         notice.innerHTML = `請輸入地區開始查詢吧!<br><br>😎🤣😁<br><br>ex:林口 or 竹北 or 南投<br><br> <span class="whocanbuy">今天是${dayArr[day.getDay()]}<br>身分證尾數<span style="color:red;">${whocanbuy}</span><br>可以購買喔!</span>`
@@ -76,7 +71,7 @@ inputText.value = country
 document.title = document.title + " " + version
 
 
-fetch(`https://pokoapi.herokuapp.com/selfTest/lastUpdate`).then(c => {
+fetch(`${API}/selfTest/lastUpdate`).then(c => {
     return c.text()
 }).then(res => {
     lastUpdate.textContent = res
@@ -99,12 +94,12 @@ let search = () => {
 
 let getAfter = () => {
     show.textContent = "正在載入更多😎..."
-    fetch(`https://pokoapi.herokuapp.com/selfTest/lastUpdate`).then(c => {
+    fetch(`${API}/selfTest/lastUpdate`).then(c => {
         return c.text()
     }).then(res => {
         lastUpdate.textContent = res
     })
-    fetch(`https://pokoapi.herokuapp.com/selfTest/${country}/${index}`).then(c => {
+    fetch(`${API}/selfTest/${country}/${index}`).then(c => {
         return c.json()
     }).then(res => {
         console.log(res.length);
@@ -156,57 +151,12 @@ let scrollCheck = (e) => {
     }
 }
 
-let scrollCheckMom = (e) => {
-    sh = e.target.scrollHeight
-    ch = e.target.clientHeight
-    st = e.target.scrollTop
-    console.log("滑動中....", sh, ch, st);
-    if (st >= (sh - ch) - 1 && scrollEnable == true) {
-        console.log("已到最底");
-        scrollEnable = false
-    }
-}
-
-
-let momChat = () => {
-    fetch(`https://pokoapi.herokuapp.com/sayToMom`).then(c => {
-        return c.json()
-    }).then(res => {
-        console.log(res);
-        sayListAll.innerHTML = ""
-        res.forEach((el) => {
-            console.log(el);
-            sayListAll.innerHTML +=
-                `
-                <li>${el.postSay}<span
-                            class="poster">by ${el.postName}</span>
-                `
-        })
-    })
-}
-
-
-let say = () => {
-    let sayName = document.querySelector("#sayName")
-    let sayText = document.querySelector("#sayText")
-    fetch(`https://pokoapi.herokuapp.com/sayToMom/post/${sayName.value}/${sayText.value}`).then(c => {
-        return c.json()
-    })
-    sayText.value = ""
-}
-
 inputText.addEventListener('keydown', (e) => {
     if (e.keyCode == 13) {
         search()
     }
 })
-// momIcon.addEventListener('click', (e) => {
-//     location.href = `./index.html?country=母親節快樂`
-// })
 
 
-if (inputText.value == "母親節快樂") {
-    sayList.setAttribute("style", "display:inline;")
-} else {
-    list.addEventListener('scroll', scrollCheck)
-}
+
+list.addEventListener('scroll', scrollCheck)
